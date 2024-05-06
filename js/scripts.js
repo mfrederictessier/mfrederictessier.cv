@@ -15,13 +15,24 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
-function changeLanguage() {
-    var langLink = document.getElementById("lang-link");
-    var lang = langLink.innerText.trim();
 
-    // Changer la langue sélectionnée
-    var newLang = (lang === "Français") ? "English" : "Français";
-    langLink.innerText = newLang;
+function changeLanguage(lang) {
+    let langSelect = document.getElementById("lang");
+
+    // Déterminer la nouvelle langue en fonction de la langue actuelle
+    var newLang;
+    if (lang === "Francais") {
+        newLang = "Francais";
+    } else if (lang === "English") {
+        newLang = "English";
+    } else if (lang === "Español") {
+        newLang = "Español";
+    }
+    // Mettre à jour le texte du sélecteur de langue
+    langSelect.innerText = newLang;
+    
+    // Mettre à jour le style du sélecteur de langue en fonction de la langue sélectionnée
+    langSelect.style.color = "white";
 
     // Stocker la langue sélectionnée dans le stockage local
     localStorage.setItem("selectedLanguage", newLang);
@@ -32,7 +43,17 @@ var translations = {
         //header
         "nom": "Frédéric Tessier",
         "home": "Accueil",
-        "game": "Jeux",
+        "welcome": "Bienvenue",
+        "climate": "Climat et environnement",
+        "mapMenu": "Cartes",
+        "precipitation": "Precipitations",
+        "temperature": "Météo Mondiale",
+        "population": "Population Mondiale",
+        "profile": "Profil",
+        "game": "Jeux de mémoire",
+        "table": "Tables",
+        "thank": "Merci",
+        "very": "Beaucoup",
         //home
         "greeting": "Bonjour à tous,",
         "bio1": "Je m'appelle Frédéric Tessier, et je suis un passionné de programmation web et mobile. Fort d'une solide formation en génie géologique et en programmation, j'ai acquis une expérience diversifiée dans différents domaines, allant de la minéralogie à la musique en passant par la menuiserie.",
@@ -132,7 +153,17 @@ var translations = {
         //Header
         "nom": "Frederic Tessier",
         "home": "Home",
-        "game": "Game",
+        "welcome": "Welcome",
+        "climate": "Climate and environment",
+        "mapMenu": "Map",
+        "precipitation": "Precipitations",
+        "temperature": "World Weather",
+        "population": "World Population",
+        "profile": "Profile",
+        "game": "Memory game",
+        "table": "Tables",
+        "thank": "Thank you",
+        "very": "very much",
         //Home
         "greeting": "Hello everyone,",
         "bio1": "My name is Frédéric Tessier, and I'm passionate about web and mobile programming. With a strong background in geological engineering and programming, I have gained diverse experience in various fields, ranging from mineralogy to music to woodworking.",
@@ -226,6 +257,114 @@ var translations = {
         "powered": "Powered by ",
 
         // Ajoutez d'autres traductions pour chaque élément de votre page
+    },
+    "Español": {
+        // Header
+        "nom": "Frédéric Tessier",
+        "home": "Inicio",
+        "welcome": "Bienvenido",
+        "climate": "Clima y medio ambiente",
+        "mapMenu": "Mapa",
+        "precipitation": "Precipitaciones",
+        "temperature": "Tiempo Mundial",
+        "population": "Población Mundial",
+        "profile": "Perfil",
+        "game": "Juego de memoria",
+        "table": "Tablas",
+        "thank": "Gracias",
+        "very": "mucho",
+        // Home
+        "greeting": "Hola a todos,",
+        "bio1": "Mi nombre es Frédéric Tessier, y soy apasionado por la programación web y móvil. Con una sólida formación en ingeniería geológica y programación, he adquirido experiencia diversa en diversos campos, desde mineralogía hasta música y carpintería.",
+        "bio2": "Mi formación en Programador de aplicaciones web y móviles AEC me ha permitido desarrollar habilidades profundas en lenguajes de programación como C#, Visual Basic, JavaScript, PHP, SQL, HTML/CSS, y muchos otros. Mi experiencia profesional también me ha brindado la oportunidad de adquirir experiencia práctica en gestión de bases de datos y redes informáticas.",
+        "bio3": "A lo largo de los años, he tenido la oportunidad de trabajar en varios proyectos, desde la producción de secciones delgadas en mineralogía hasta la grabación de composiciones musicales. Mi experiencia como técnico de mineralogía me ha permitido desarrollar habilidades valiosas en análisis y procesamiento de datos, mientras que mi trabajo en el campo de la música me ha enseñado creatividad y atención al detalle.",
+        "bio4": "Hoy en día, estoy buscando nuevas oportunidades profesionales en el campo de la programación, donde pueda aprovechar mis habilidades técnicas y experiencia para contribuir al éxito de proyectos innovadores. Sin embargo, también estoy abierto a explorar otros campos que podrían beneficiarse de mis habilidades y mi pasión por el aprendizaje continuo.",
+        "bio5": "No dudes en contactarme si deseas obtener más información sobre mi experiencia o discutir posibles colaboraciones.",
+        "bio6": "Sinceramente,",
+        "bio7": "Frédéric Tessier",
+        // Jeux
+        "pointage": "Puntuación: ",
+        "restart": "Reiniciar",
+        "solve": "Ver",
+        "resolve": "Resolver",
+        "leaderboard": "Ver tabla de clasificación",
+        "leaderboardTitle": "Tabla de clasificación",
+        "leaderboard1": "Posición",
+        "leaderboard2": "Tiempo",
+        "leaderboard3": "Puntuación",
+        // Profile
+        "download": "Descargar PDF",
+        "name": "FRÉDÉRIC TESSIER",
+        "formation": "Programación web y móvil",
+        "langues": "Idiomas",
+        "fr": "Francés",
+        "en": "Inglés",
+        "skillsTitle": "Habilidades",
+        "skill1": "Carpintería",
+        "skill2": "Informática",
+        "skill3": "Mecánica",
+        "skill4": "Dibujo",
+        "skill5": "Música",
+        "skill6": "Liderazgo",
+        "skill7": "Creatividad",
+        "skill8": "Productividad",
+        "skill9": "Lenguajes de programación: C#, Visual Basic, JavaScript, PHP, SQL, HTML/CSS, etc.",
+        "skill10": "Gestión de bases de datos: habilidades en gestión de bases de datos utilizando Microsoft SQL Server.",
+        "skill11": "Redes informáticas: conocimientos en redes informáticas, incluida la configuración, instalación y resolución de problemas de redes locales.",
+        "skill12": "Métodos de desarrollo de software: conocimiento de métodos de desarrollo, como ágil, así como de gestión de proyectos y colaboración en equipo.",
+
+        "educationTitle": "Educación",
+
+        "education1": "Para siempre",
+        "education2": "¡Desarrollo web! Todo lo que necesito saber en un solo lugar.",
+        "education3": "Programador de aplicaciones web y móviles AEC.",
+        "education4": "Ingeniería geológica (3 años)",
+        "education5": "Diploma de estudios profesionales: Modelado (Modelador en madera).",
+        "education6": "Tecnología electrónica industrial (1 año).",
+        "education7": "Estudios de música (2 años).",
+        "education8": "Diploma de escuela secundaria.",
+
+        "worksection": "Experiencia laboral",
+
+        "workTitle1": "Prácticas en Propulsion Carriere",
+
+        "workTitle2": "Prácticas en desarrollo de software",
+
+        "workTitle3": "Técnico en mineralogía",
+        "work31": "Fabricación de secciones delgadas y secciones pulidas,",
+        "work32": "Preparación de muestras para análisis: corte, trituración, granulometría,",
+        "work33": "Asistencia a geólogos en el laboratorio.",
+
+        "workTitle4": "Asistente de geólogo",
+        "work41": "Asistencia al geólogo en el análisis de calidad de la roca y caracterización de fracturas,",
+        "work42": "Aseguramiento del inventario de núcleos de perforación y monitoreo de análisis de laboratorio,",
+        "work43": "Actuar como enlace entre el geólogo de IOS y el geólogo de Niobec.",
+
+
+        "workTitle5": "Técnico de escenario",
+        "work51": "Técnico de iluminación, electricista y maquinista,",
+        "work52": "Varios contratos (espectáculos): Las Francofolies de Montreal, Cirque du Soleil, Théâtre Saint-Denis, Métropolis y Place des Arts,",
+        "work53": "Varios contratos (televisión): Belle et Bum, La Guerre des clans, Le Mur, Distraction.",
+
+        "workTitle6": "Asistente de servicio de mostrador - Empleado de almacén",
+        "work61": "Asistir a los empleados de mostrador buscando materiales en el almacén,",
+        "work62": "Mantenimiento de áreas exteriores e interiores,",
+        "work63": "Hacer inventario del almacén.",
+
+        "workTitle7": "Grabación de un proyecto musical",
+        "work71": "Composición, arreglo, captura de sonido, grabación y mezcla.",
+        "work72": "Montaje de un estudio de grabación.",
+        "work73": "Iniciar procesos de distribución.",
+
+        "workTitle8": "Modelador de madera",
+        "work81": "Diseñar guías de robots para la producción de piezas termoformadas.",
+        "work82": "Fabricación y modificación de modelos, moldes y guías de robots.",
+        "work83": "Reparación de moldes en la línea de producción.",
+
+        // Footer
+        "social": "Encuéntrame en las redes sociales.",
+        "powered": "Desarrollado por ",
+        // Añade más traducciones para cada elemento de tu página
     }
 };
 
@@ -234,11 +373,17 @@ function setStoredLanguage() {
     var storedLang = localStorage.getItem("selectedLanguage");
 
     // Vérifier si la langue stockée est valide
-    if (storedLang && (storedLang === "Français" || storedLang === "English")) {
+    if (storedLang && (storedLang === "Français" || storedLang === "English"|| storedLang === "Español")) {
         // Si la langue stockée est valide, utiliser cette langue
-        var langLink = document.getElementById("lang-link");
+        var langLink = document.getElementById("lang");
         langLink.innerText = storedLang;
         langLink.style.color = (storedLang === "Français") ? "black" : "black";
+        let langSelect = document.getElementById("lang")
+
+
+    langSelect.innerText = storedLang;
+    // Mettre à jour le style du lien en fonction de la langue sélectionnée
+    langSelect.style.color = "white";
 
         // Mettre à jour les éléments de la page avec les traductions correspondantes
         if (translations[storedLang]) {
@@ -251,9 +396,49 @@ function setStoredLanguage() {
             if (headerHome) {
                 headerHome.innerText = translations[storedLang].home;
             }
+            var headerWelcome = document.getElementById("welcome");
+            if (headerWelcome) {
+                headerWelcome.innerText = translations[storedLang].welcome;
+            }
+            var climate = document.getElementById("climate");
+            if (climate) {
+                climate.innerText = translations[storedLang].climate;
+            }
+            var map = document.getElementById("mapMenu");
+            if (map) {
+                map.innerText = translations[storedLang].mapMenu;
+            }
+            var precipitation = document.getElementById("precipitation");
+            if (precipitation) {
+                precipitation.innerText = translations[storedLang].precipitation;
+            }
+            var temperature = document.getElementById("temperature");
+            if (temperature) {
+                temperature.innerText = translations[storedLang].temperature;
+            }
+            var population = document.getElementById("population");
+            if (population) {
+                population.innerText = translations[storedLang].population;
+            }
+            var profile = document.getElementById("profile");
+            if (profile) {
+                profile.innerText = translations[storedLang].profile;
+            }
             var headerGame = document.getElementById("gameMenu");
             if (headerGame) {
                 headerGame.innerText = translations[storedLang].game;
+            }
+            var table = document.getElementById("table");
+            if (table) {
+                table.innerText = translations[storedLang].table;
+            }
+            var thank = document.getElementById("thank");
+            if (thank) {
+                thank.innerText = translations[storedLang].thank;
+            }
+            var very = document.getElementById("very");
+            if (very) {
+                very.innerText = translations[storedLang].very;
             }
 
             // Mettre à jour les éléments du main s'ils sont présents

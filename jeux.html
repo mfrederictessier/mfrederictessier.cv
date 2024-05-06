@@ -33,11 +33,12 @@
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                        aria-expanded="false"><i class="fas fa-globe-americas fa-fw"></i><span id="lang"></span></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a id="lang-link" class="nav-link lang-link" onclick="changeLanguage()" style="color: white;">Français /
-                            English</a></li>
-                        
+                        <!-- Ajoutez les deux langues statiquement -->
+                        <li><a id="francais" class="nav-link lang-link" onclick="changeLanguage('Francais')" onmouseover="hoverLanguage('francais', true)" onmouseout="hoverLanguage('francais', false)"> Français</a></li>
+                        <li><a id="english" class="nav-link lang-link" onclick="changeLanguage('English')" onmouseover="hoverLanguage('english', true)" onmouseout="hoverLanguage('english', false)"> English</a></li>
+                        <li><a id="espagnol" class="nav-link lang-link" onclick="changeLanguage('Español')" onmouseover="hoverLanguage('espagnol', true)" onmouseout="hoverLanguage('espagnol', false)"> Español</a></li>
                     </ul>
                 </li>
             </ul>

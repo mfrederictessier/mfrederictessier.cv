@@ -109,7 +109,13 @@
   transform: translateY(-98%);
   right: 50px; /* Ajustez la valeur pour le décalage de la droite */
   width: 125px; /* Ajustez la largeur de la légende selon vos besoins */
-}body {
+}
+.nav-link.lang-link {
+  color: black; /* Couleur du texte */
+  text-align: center; /* Centrage du texte */
+}
+
+body {
   margin: 0;
   font-family: var(--bs-body-font-family);
   font-size: var(--bs-body-font-size);
@@ -3668,7 +3674,7 @@ textarea.form-control-lg {
   }
 }
 .nav-link:hover, .nav-link:focus {
-  color: var(--bs-nav-link-hover-color);
+  color: lightslategray;
 }
 .nav-link.disabled {
   color: var(--bs-nav-link-disabled-color);
@@ -11053,7 +11059,7 @@ body {
   color: rgba(255, 255, 255, 0.25);
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link:hover {
-  color: #fff;
+  color: lightslategray;
 }
 .sb-sidenav-dark .sb-sidenav-menu .nav-link.active {
   color: #fff;
@@ -11082,7 +11088,7 @@ body {
   color: #adb5bd;
 }
 .sb-sidenav-light .sb-sidenav-menu .nav-link:hover {
-  color: #0d6efd;
+  color: lightslategray;
 }
 .sb-sidenav-light .sb-sidenav-menu .nav-link.active {
   color: #0d6efd;
