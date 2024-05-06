@@ -1,0 +1,179 @@
+
+.smallFonts {
+    font-size: 10px; /* Modifier la taille de la police selon vos besoins */
+    
+}
+#map {
+    width: 100%;
+    height: 800px;
+}
+
+/* Add in CSS required for popup*/
+.ol-popup {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid #6e6e6e;
+    bottom: 12px;
+    left: -50px;
+    min-width: 250px;
+    max-height: 100px;
+}
+
+.ol-popup:after,
+.ol-popup:before {
+    top: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.ol-popup:after {
+    border-top-color: white;
+    border-width: 10px;
+    left: 48px;
+    margin-left: -10px;
+}
+
+.ol-popup:before {
+    border-top-color: #cccccc;
+    border-width: 11px;
+    left: 48px;
+    margin-left: -11px;
+}
+
+.ol-popup-closer {
+    text-decoration: none;
+    position: absolute;
+    top: 5px;
+    right: 8px;
+}
+
+.ol-popup-closer:after {
+    content: "✖";
+    color: #A9A9A9;
+}
+.ol-popup-inverse {
+    transform: rotateY(180deg);
+}
+.ol-content-inverse {
+    transform: rotate(180deg);
+}
+.table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+    /* Couleur de fond pour les lignes paires */
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+    /* Couleur de fond pour les lignes impaires */
+}
+
+/* Style pour rendre le thead fixe */
+thead {
+    position: sticky;
+    top: 0;
+    /* Modifier cette ligne */
+    background-color: lightgray;
+    z-index: 1;
+    /* Pour s'assurer que le thead reste au-dessus du reste du contenu */
+}
+
+.weather-icon {
+    width: 40px;
+    /* Définissez la largeur souhaitée */
+    height: auto;
+    /* Gardez la hauteur proportionnelle pour éviter la distorsion */
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+
+}
+
+.info-button {
+    display: inline-block;
+    background-color: rgb(218, 218, 218);
+    color: #fff;
+    border: 2px solid #777777;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.info-button:hover {
+    background-color: #909192;
+}
+
+.modal {
+    display: none;
+    /* Par défaut, la modale est cachée */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fond semi-transparent pour assombrir le contenu en arrière-plan */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* Centre la modale verticalement et horizontalement */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.error-row {
+    background-color: #000000; /* Couleur de fond rouge */
+    color: red; /* Couleur du texte en rouge */
+}
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table-responsive table {
+    min-width: 100%; /* Table prend la largeur maximale possible */
+    border-collapse: collapse;
+}
+
+.table-responsive th, .table-responsive td {
+    border: 1px solid #000000; /* Bordures pour le style */
+    padding: 8px; /* Espacement autour du contenu */
+}
+
+.table-responsive th:first-child, .table-responsive td:first-child {
+    position: sticky; /* Rend le premier élément collant */
+    left: 0; /* Fixe la position à gauche */
+    background-color: lightgrey; /* Couleur de fond pour la première colonne */
+    z-index: 0; /* Assure que la première colonne est au-dessus de la zone de défilement */
+}

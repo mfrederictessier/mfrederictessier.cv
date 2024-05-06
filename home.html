@@ -1,0 +1,59 @@
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Bienvenue</h1>
+        
+        <div class="card mb-4">
+
+            <div class="card-body">
+                <section class="w3-container w3-card-4 w3-white presentation-section">
+
+                    <p id="greeting">Bonjour à tous,</p>
+            
+                    <p id="bio1">Je m'appelle Frédéric Tessier, et je suis un passionné de programmation web et mobile. Fort d'une solide formation en génie géologique et en programmation, j'ai acquis une expérience diversifiée dans différents domaines, allant de la minéralogie à la musique en passant par la menuiserie.</p>
+            
+                    <p id="bio2">Ma formation en AEC Programmeur d’applications web et mobiles m'a permis de développer des compétences approfondies en langages de programmation tels que C#, Visual Basic, JavaScript, PHP, SQL, HTML/CSS, et bien d'autres. Mon parcours professionnel m'a également offert l'occasion d'acquérir une expertise pratique dans la gestion de bases de données et les réseaux informatiques.</p>
+            
+                    <p id="bio3">Au fil des années, j'ai eu l'opportunité de travailler sur des projets variés, allant de la fabrication de lames minces en minéralogie à la réalisation d'enregistrements musicaux. Mon expérience en tant que technicien en minéralogie m'a permis de développer des compétences précieuses en matière d'analyse et de traitement de données, tandis que mon travail dans le domaine de la musique m'a enseigné la créativité et le sens du détail.</p>
+            
+                    <p id="bio4">Aujourd'hui, je suis à la recherche de nouvelles opportunités professionnelles dans le domaine de la programmation, où je pourrai mettre à profit mes compétences techniques et mon expérience pour contribuer au succès de projets innovants. Cependant, je reste également ouvert à explorer d'autres domaines qui pourraient bénéficier de mes compétences et de ma passion pour l'apprentissage continu.</p>
+            
+                    <p id="bio5">N'hésitez pas à me contacter si vous souhaitez en savoir plus sur mon parcours ou discuter d'éventuelles collaborations.</p>
+            
+                    <p class="w3-text-grey">
+                        <span id="bio6">Cordialement, </span><img style="height: 125px; float: right; margin-right: 10%;" src="assets/img/certifié.png" alt=""><br>
+                        <span id="bio7" style="font-family: Brush Script MT, Brush Script Std, cursive; font-size: 30px;">Frédéric Tessier</span>
+                        
+                    </p>
+                </section>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <i class="fas fa-handshake fa-3x"></i> <!-- Gros icône de bienvenue -->
+                        Bienvenue sur mon site web démonstratif
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Ce site web est une démonstration de mes compétences en programmation web. Il est conçu pour vous montrer mes expériences dans différents domaines de programmation. N'hésitez pas à explorer et à me contacter si vous avez des questions ou des commentaires.
+                </div>
+                <div class="modal-footer">
+                    <span>Bonne visite !</span> <!-- Souhait de bonne visite -->
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Ouvrir automatiquement la modal lors du chargement de la page
+        $(document).ready(function() {
+            $('#exampleModal').modal('show');
+        });
+    </script>
+</main>
