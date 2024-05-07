@@ -66,7 +66,7 @@
                     style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 0px; text-align: center;">
                     <div style="width: 100%;">
                         <div class="header-container">
-                            <h1 style="font-family: Arial, sans-serif;"><i class="fas fa-thermometer-half icon"></i> Météo Mondiale</h1>
+                            <h1 style="font-family: Arial, sans-serif;"><i class="fas fa-thermometer-half icon"></i> <span id="pageTitle"></span> </h1>
                             <button id="myBtn" class="ion-social-designernews info-button btn btn-secondary"><i
                                     class="fas fa-question icon fa-2x">info</i></button>
                         </div>
@@ -85,29 +85,25 @@
                                     </div>
                                     
                                     <div class="card-body" style="background-color: rgb(212, 212, 212);">
-                                        <h6>Recherche</h6>
-                                        <div class="search-container"
-                                            style="margin-bottom: 2px; width: 100%; position: relative;">
+                                        <h6 id="search">Recherche</h6>
+                                        <div class="search-container" style="margin-bottom: 2px; width: 100%; position: relative;">
                                             <div style="position: relative;">
-                                                <input type="search" id="cityInput"
-                                                    placeholder="Entrez le nom d'une ville"
-                                                    style="margin-bottom: 4px; width: 100%; padding-right: 24px;">
+                                                <input type="search" id="cityInput" placeholder="Enter a city name" data-placeholder-français="Entrez le nom d'une ville" data-placeholder-english="Enter a city name" data-placeholder-español="Ingrese el nombre de una ciudad" style="margin-bottom: 4px; width: 100%; padding-right: 24px;">
                                             </div>
-                                            <button class="btn btn-secondary" onclick="searchCity()"
-                                                style="margin-bottom: 2px; width: 100%;">Voir</button>
+                                            <button class="btn btn-secondary" onclick="searchCity()" style="margin-bottom: 2px; width: 100%;" id="searchButton">Voir</button>
                                         </div>
                                         <div style="width: 100%; margin-bottom: 4px;">
-                                            <select id="cityList" onchange="selectCity()"
-                                                style="margin-bottom: 2px; width: 100%;overflow-x: auto;"
-                                                title="Sélectionnez une ville">
-                                                <option value="">Sélectionnez une ville</option>
+                                            <select id="cityList" onchange="selectCity()" style="margin-bottom: 2px; width: 100%;overflow-x: auto;" title="Sélectionnez une ville">
+                                                <option value="" id="selection">Sélectionnez une ville</option>
                                                 <!-- Ajoutez vos autres options ici -->
                                             </select>
                                         </div>
                                         
                                     </div>
+                                    
+                                    
                                     <div id="footer1" class="card-footer" style="background-color: white; height: 40px;">
-                                        <p>Ces données sont fournies par <a href="https://nominatim.org/"
+                                        <p><span id="nominatimFooter">Ces données sont fournies par</span>  <a href="https://nominatim.org/"
                                                 target="_blank" rel="noopener noreferrer">nominatim.org</a>.</p>
                                     </div>
 
@@ -144,7 +140,7 @@
                                                 src="https://geo.weather.gc.ca/geomet?version=1.3.0&amp;service=WMS&amp;request=GetLegendGraphic&amp;sld_version=1.1.0&amp;layer=GDPS.ETA_TT&amp;format=image/png&amp;STYLE=TEMPERATURE-LINEAR">
                                         </div>
                                         <button id="toggleLegendButton">Légende</button>
-                                        <label for="opacitySlider">Opacité</label>
+                                        <label id="opacity" for="opacitySlider">Opacité</label>
                                         <input type="range" id="opacitySlider" name="opacitySlider" min="0" max="1" step="0.1" value="0.3"
                                             style="width: 75px;">
                                     </div>
@@ -189,7 +185,7 @@
                                     </script>
 
                                     <div id="footer2" class="card-footer" style="background-color: white;height: 40px;">
-                                        <p>Ces données météorologiques sont fournies par <a
+                                        <p><span id="canadaFooter">Ces données météorologiques sont fournies par </span> <a
                                                 href="https://eccc-msc.github.io/open-data/" target="_blank"
                                                 rel="noopener noreferrer">Meteorological Service of Canada</a>.</p>
                                     </div>
@@ -214,22 +210,22 @@
                                             style="background-color: lightgray; font-size: 0.8em;">
                                             <thead>
                                                 <tr>
-                                                    <th>Heure locale</th>
-                                                    <th>Longitude</th>
-                                                    <th>Latitude</th>
-                                                    <th>Station météo</th>
-                                                    <th>Pays</th>
-                                                    <th>Température Actuelle (°C)</th>
-                                                    <th>Température Ressentie (°C)</th>
-                                                    <th>Conditions</th>
-                                                    <th style="width: 100px;">Vitesse du Vent (km/h)</th>
-                                                    <th>Direction du Vent</th>
-                                                    <th>Pression en millibar (mb)</th>
-                                                    <th>Précipitation (mm)</th>
-                                                    <th>Humidité (%)</th>
-                                                    <th>Couverture Nuageuse (%)</th>
-                                                    <th>Indice UV</th>
-                                                    <th style="width: 100px;">Rafales de Vent (km/h)</th>
+                                                    <th id="heureLocale">Heure locale</th>
+                                                    <th id="longitude">Longitude</th>
+                                                    <th id="latitude">Latitude</th>
+                                                    <th id="stationMeteo">Station météo</th>
+                                                    <th id="pays">Pays</th>
+                                                    <th id="temperatureActuelle">Température Actuelle (°C)</th>
+                                                    <th id="temperatureRessentie">Température Ressentie (°C)</th>
+                                                    <th id="conditions">Conditions</th>
+                                                    <th id="vitesseVent" style="width: 100px;">Vitesse du Vent (km/h)</th>
+                                                    <th id="directionVent">Direction du Vent</th>
+                                                    <th id="pression">Pression en millibar (mb)</th>
+                                                    <th id="precipitation">Précipitation (mm)</th>
+                                                    <th id="humidite">Humidité (%)</th>
+                                                    <th id="couvertureNuageuse">Couverture Nuageuse (%)</th>
+                                                    <th id="indiceUV">Indice UV</th>
+                                                    <th id="rafalesVent" style="width: 100px;">Rafales de Vent (km/h)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -238,7 +234,7 @@
                                         </table>
                                     </div>
                                     <div id="footer3" class="card-footer" style="background-color: white; height: 40px;">
-                                        <p>Les données météorologiques sont fournies par <a
+                                        <p><span id="weatherapiFooter">Les données météorologiques sont fournies par </span> <a
                                                 href="https://www.weatherapi.com/" title="Free Weather API"
                                                 target="_blank" rel="noopener noreferrer">WeatherAPI.com</a>.</p>
                                     </div>
@@ -255,21 +251,21 @@
         <div class="modal-content" style="font-size: 20px;">
             <span class="close" style="margin-left: 98%;">&times;</span>
             <div style="margin: 20px;">
-                <p>Dans mon projet, j'ai conçu une application météorologique qui tire pleinement parti des API pour
+                <p id="info1">Dans mon projet, j'ai conçu une application météorologique qui tire pleinement parti des API pour
                     fournir des
                     données météorologiques précises et à jour. En utilisant la géolocalisation, l'application peut
                     déterminer
                     automatiquement l'emplacement de l'utilisateur, lui permettant ainsi d'accéder rapidement aux
                     informations
                     météorologiques pertinentes pour sa région actuelle.</p>
-                <p>Lorsque je clique sur un point spécifique de la carte, l'application envoie une requête à l'API
+                <p id="info2">Lorsque je clique sur un point spécifique de la carte, l'application envoie une requête à l'API
                     météorologique
                     correspondante, demandant des données telles que la température actuelle, la vitesse du vent et les
                     précipitations. Ces données sont ensuite récupérées et affichées, offrant
                     à
                     l'utilisateur une vue détaillée des conditions météorologiques à cet endroit précis.</p>
 
-                <p>De plus, lorsque j'explore le tableau de données météorologiques, chaque ligne du tableau est
+                <p id="info3">De plus, lorsque j'explore le tableau de données météorologiques, chaque ligne du tableau est
                     alimentée par des
                     informations extraites des API. Les requêtes sont envoyées en fonction des coordonnées géographiques
                     de
@@ -277,7 +273,7 @@
                     affichées de
                     manière claire et concise.</p>
 
-                <p>Grâce à l'utilisation des API, mon application météorologique offre une expérience utilisateur fluide
+                <p id="info4">Grâce à l'utilisation des API, mon application météorologique offre une expérience utilisateur fluide
                     et
                     enrichissante, lui permettant de rester informé des conditions météorologiques actuelles et prévues
                     dans sa
@@ -286,13 +282,32 @@
         </div>
     </div>
     <!-- Modal -->
-<div class="modal fade" id="previsionModal" aria-labelledby="Prévision" aria-hidden="false">
-    
-  </div>
+<div class="modal fade" id="previsionModal" aria-labelledby="Prévision" aria-hidden="false"></div>
+<script>
+    // Récupérer la langue stockée dans le localStorage
+    var storedLang = localStorage.getItem("selectedLanguage");
+    // Mettre à jour le titre de la page
+    translateTitle(storedLang);
+
+    function translateTitle(language) {
+    var title = document.querySelector("title");
+
+    if (language === "Français") {
+        title.innerText = "Météo Mondiale";
+    } else if (language === "English") {
+        title.innerText = "World Weather";
+    } else if (language === "Español") {
+        title.innerText = "Clima Mundial";
+    }
+}
+</script>
     <script src="js/temperature.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
+    <script>
+        
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
