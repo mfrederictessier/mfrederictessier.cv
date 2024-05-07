@@ -1,6 +1,6 @@
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Bienvenue</h1>
+        <h1 id="bienvenue" class="mt-4">Bienvenue</h1>
         
         <div class="card mb-4">
 
@@ -35,16 +35,16 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
                         <i class="fas fa-handshake fa-3x"></i> <!-- Gros icône de bienvenue -->
-                        Bienvenue sur mon site web démonstratif
+                        <span id="titlemodalHome">Bienvenue sur mon site web démonstratif</span> 
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div id="modalHome" class="modal-body">
                     Ce site web est une démonstration de mes compétences en programmation web. Il est conçu pour vous montrer mes expériences dans différents domaines de programmation. N'hésitez pas à explorer et à me contacter si vous avez des questions ou des commentaires.
                 </div>
                 <div class="modal-footer">
-                    <span>Bonne visite !</span> <!-- Souhait de bonne visite -->
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <span id="souhait">Bonne visite !</span> <!-- Souhait de bonne visite -->
+                    <button id="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                 </div>
             </div>
         </div>

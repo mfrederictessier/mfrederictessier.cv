@@ -55,6 +55,7 @@ var translations = {
         "thank": "Merci",
         "very": "Beaucoup",
         //home
+        "bienvenue": "Bienvenue",
         "greeting": "Bonjour à tous,",
         "bio1": "Je m'appelle Frédéric Tessier, et je suis un passionné de programmation web et mobile. Fort d'une solide formation en génie géologique et en programmation, j'ai acquis une expérience diversifiée dans différents domaines, allant de la minéralogie à la musique en passant par la menuiserie.",
         "bio2": "Ma formation en AEC Programmeur d’applications web et mobiles m'a permis de développer des compétences approfondies en langages de programmation tels que C#, Visual Basic, JavaScript, PHP, SQL, HTML/CSS, et bien d'autres. Mon parcours professionnel m'a également offert l'occasion d'acquérir une expertise pratique dans la gestion de bases de données et les réseaux informatiques.",
@@ -63,6 +64,10 @@ var translations = {
         "bio5": "N'hésitez pas à me contacter si vous souhaitez en savoir plus sur mon parcours ou discuter d'éventuelles collaborations.",
         "bio6": "Cordialement,",
         "bio7": "Frédéric Tessier",
+        "titlemodalHome": "Bienvenue sur mon site web démonstratif",
+        "modalHome": "Ce site web est une démonstration de mes compétences en programmation web. Il est conçu pour vous montrer mes expériences dans différents domaines de programmation. N'hésitez pas à explorer et à me contacter si vous avez des questions ou des commentaires.",
+        "souhait": "Bonne visite!",
+        "close": "Fermer",
         //jeux
         "pointage": "Pointage: ",
         "restart": "Recommencer",
@@ -165,6 +170,7 @@ var translations = {
         "thank": "Thank you",
         "very": "very much",
         //Home
+        "bienvenue": "Welcome",
         "greeting": "Hello everyone,",
         "bio1": "My name is Frédéric Tessier, and I'm passionate about web and mobile programming. With a strong background in geological engineering and programming, I have gained diverse experience in various fields, ranging from mineralogy to music to woodworking.",
         "bio2": "My training in AEC Web and Mobile Application Programmer has allowed me to develop in-depth skills in programming languages such as C#, Visual Basic, JavaScript, PHP, SQL, HTML/CSS, and many others. My professional background has also provided me with the opportunity to gain practical expertise in database management and computer networks.",
@@ -173,6 +179,10 @@ var translations = {
         "bio5": "Feel free to contact me if you would like to learn more about my background or discuss potential collaborations.",
         "bio6": "Sincerely,",
         "bio7": "Frederic Tessier",
+        "titlemodalHome": "Welcome to my demonstration website",
+        "modalHome": "This website is a showcase of my web programming skills. It's designed to demonstrate my experiences in various programming domains. Feel free to explore and contact me if you have any questions or comments.",
+        "souhait": "Enjoy your visit!",
+        "close": "Close",
         //Jeux
         "pointage": "Score: ",
         "restart": "Restart",
@@ -274,6 +284,7 @@ var translations = {
         "thank": "Gracias",
         "very": "mucho",
         // Home
+        "bienvenue": "Bienvenida",
         "greeting": "Hola a todos,",
         "bio1": "Mi nombre es Frédéric Tessier, y soy apasionado por la programación web y móvil. Con una sólida formación en ingeniería geológica y programación, he adquirido experiencia diversa en diversos campos, desde mineralogía hasta música y carpintería.",
         "bio2": "Mi formación en Programador de aplicaciones web y móviles AEC me ha permitido desarrollar habilidades profundas en lenguajes de programación como C#, Visual Basic, JavaScript, PHP, SQL, HTML/CSS, y muchos otros. Mi experiencia profesional también me ha brindado la oportunidad de adquirir experiencia práctica en gestión de bases de datos y redes informáticas.",
@@ -282,6 +293,10 @@ var translations = {
         "bio5": "No dudes en contactarme si deseas obtener más información sobre mi experiencia o discutir posibles colaboraciones.",
         "bio6": "Sinceramente,",
         "bio7": "Frédéric Tessier",
+        "titlemodalHome": "Bienvenido a mi sitio web de demostración",
+        "modalHome": "Este sitio web es una demostración de mis habilidades en programación web. Está diseñado para mostrar mis experiencias en diversos campos de programación. Siéntase libre de explorar y ponerse en contacto conmigo si tiene alguna pregunta o comentario.",
+        "souhait": "¡Disfruta tu visita!",
+        "close": "Cerrar",
         // Jeux
         "pointage": "Puntuación: ",
         "restart": "Reiniciar",
@@ -439,6 +454,10 @@ function setStoredLanguage() {
             var very = document.getElementById("very");
             if (very) {
                 very.innerText = translations[storedLang].very;
+            }// Mettre à jour les éléments du main s'ils sont présents
+            var bienvenue = document.getElementById("bienvenue");
+            if (bienvenue) {
+                bienvenue.innerText = translations[storedLang].bienvenue;
             }
 
             // Mettre à jour les éléments du main s'ils sont présents
@@ -451,6 +470,22 @@ function setStoredLanguage() {
                 if (bio) {
                     bio.innerText = translations[storedLang][`bio${i}`];
                 }
+            }
+            var titlemodalHome = document.getElementById("titlemodalHome");
+            if (titlemodalHome) {
+                titlemodalHome.innerText = translations[storedLang].titlemodalHome;
+            }
+            var modalHome = document.getElementById("modalHome");
+            if (modalHome) {
+                modalHome.innerText = translations[storedLang].modalHome;
+            }
+            var souhait = document.getElementById("souhait");
+            if (souhait) {
+                souhait.innerText = translations[storedLang].souhait;
+            }
+            var close = document.getElementById("close");
+            if (close) {
+                close.innerText = translations[storedLang].close;
             }
 
             //Game
