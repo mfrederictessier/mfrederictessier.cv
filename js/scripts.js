@@ -15,9 +15,37 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+let language;
+// Fonction pour mettre à jour le placeholder du champ de recherche en fonction de la langue sélectionnée
+function updatePlaceholder() {
+    var storedLang = localStorage.getItem("selectedLanguage");
+    language= storedLang;       
+    console.log("Langue :", language); // Afficher la langue sélectionnée dans la console
 
+    var cityInput = document.getElementById("cityInput");
+    if (cityInput) {
+        // Construire la clé du placeholder en fonction de la langue sélectionnée
+        var placeholderKey = "data-placeholder-" + language.toLowerCase();
+        console.log("Langue :", placeholderKey);
+
+        // Récupérer la traduction du placeholder en fonction de la langue sélectionnée
+        var placeholderTranslation = cityInput.getAttribute(placeholderKey);
+
+        // Mettre à jour le placeholder de l'élément input
+        if (placeholderTranslation) {
+            cityInput.placeholder = placeholderTranslation;
+        }
+    }
+}
+
+// Appeler la fonction une fois que la page est entièrement chargée
+window.onload = function () {
+    updatePlaceholder();
+};
 function changeLanguage(lang) {
     let langSelect = document.getElementById("lang");
+    language= lang;
+    
 
     // Déterminer la nouvelle langue en fonction de la langue actuelle
     var newLang;
@@ -37,6 +65,7 @@ function changeLanguage(lang) {
     // Stocker la langue sélectionnée dans le stockage local
     localStorage.setItem("selectedLanguage", newLang);
     setStoredLanguage();
+    updatePlaceholder();
 }
 var translations = {
     "Français": {
@@ -68,6 +97,39 @@ var translations = {
         "modalHome": "Ce site web est une démonstration de mes compétences en programmation web. Il est conçu pour vous montrer mes expériences dans différents domaines de programmation. N'hésitez pas à explorer et à me contacter si vous avez des questions ou des commentaires.",
         "souhait": "Bonne visite!",
         "close": "Fermer",
+        //Météo Mondiale
+        "pageTitle": "Météo Mondiale",
+        "search": "Recherche",
+        "searchButton": "Voir",
+        "selection": "Sélectionnez une ville",
+        "nominatimFooter": "Ces données sont fournies par",
+        "canadaFooter": "Ces données météorologiques sont fournies par",
+        "weatherapiFooter": "Les données météorologiques sont fournies par",
+        "toggleLegendButton": "Légende",
+        "opacity": "opacité",
+        "heureLocale": "Heure locale",
+        "longitude": "Longitude",
+        "latitude": "Latitude",
+        "stationMeteo": "Station météo",
+        "pays": "Pays",
+        "temperatureActuelle": "Température Actuelle (°C)",
+        "temperatureRessentie": "Température Ressentie (°C)",
+        "conditions": "Conditions",
+        "vitesseVent": "Vitesse du Vent (km/h)",
+        "directionVent": "Direction du Vent",
+        "pression": "Pression en millibar (mb)",
+        "precipitation": "Précipitation (mm)",
+        "humidite": "Humidité (%)",
+        "couvertureNuageuse": "Couverture Nuageuse (%)",
+        "indiceUV": "Indice UV",
+        "rafalesVent": "Rafales de Vent (km/h)",
+        "info1": "Dans mon projet, j'ai conçu une application météorologique qui tire pleinement parti des API pour fournir des données météorologiques précises et à jour. En utilisant la géolocalisation, l'application peut déterminer automatiquement l'emplacement de l'utilisateur, lui permettant ainsi d'accéder rapidement aux informations météorologiques pertinentes pour sa région actuelle.",
+        "info2": "Lorsque je clique sur un point spécifique de la carte, l'application envoie une requête à l'API météorologique correspondante, demandant des données telles que la température actuelle, la vitesse du vent et les précipitations. Ces données sont ensuite récupérées et affichées, offrant à l'utilisateur une vue détaillée des conditions météorologiques à cet endroit précis.",
+        "info3": "De plus, lorsque j'explore le tableau de données météorologiques, chaque ligne du tableau est alimentée par des informations extraites des API. Les requêtes sont envoyées en fonction des coordonnées géographiques de l'emplacement sélectionné, et les données météorologiques correspondantes sont récupérées et affichées de manière claire et concise.",
+        "info4": "Grâce à l'utilisation des API, mon application météorologique offre une expérience utilisateur fluide et enrichissante, lui permettant de rester informé des conditions météorologiques actuelles et prévues dans sa région, où qu'il se trouve.",
+
+
+
         //jeux
         "pointage": "Pointage: ",
         "restart": "Recommencer",
@@ -183,6 +245,36 @@ var translations = {
         "modalHome": "This website is a showcase of my web programming skills. It's designed to demonstrate my experiences in various programming domains. Feel free to explore and contact me if you have any questions or comments.",
         "souhait": "Enjoy your visit!",
         "close": "Close",
+        // Weather World
+        "pageTitle": "World Weather",
+        "search": "Search",
+        "searchButton": "See",
+        "selection": "Select a city",
+        "nominatimFooter": "These data are provided by",
+        "canadaFooter": "These weather data are provided by",
+        "weatherapiFooter": "Weather data is provided by",
+        "toggleLegendButton": "Legend",
+        "opacity": "opacity",
+        "heureLocale": "Local Time",
+        "longitude": "Longitude",
+        "latitude": "Latitude",
+        "stationMeteo": "Weather Station",
+        "pays": "Country",
+        "temperatureActuelle": "Current Temperature (°C)",
+        "temperatureRessentie": "Feels Like Temperature (°C)",
+        "conditions": "Conditions",
+        "vitesseVent": "Wind Speed (km/h)",
+        "directionVent": "Wind Direction",
+        "pression": "Pressure in millibar (mb)",
+        "precipitation": "Precipitation (mm)",
+        "humidite": "Humidity (%)",
+        "couvertureNuageuse": "Cloud Cover (%)",
+        "indiceUV": "UV Index",
+        "rafalesVent": "Wind Gusts (km/h)",
+        "info1": "In my project, I have designed a weather application that fully leverages APIs to provide accurate and up-to-date weather data. By using geolocation, the application can automatically determine the user's location, allowing them to quickly access relevant weather information for their current region.",
+        "info2": "When I click on a specific point on the map, the application sends a request to the corresponding weather API, requesting data such as current temperature, wind speed, and precipitation. This data is then retrieved and displayed, offering the user a detailed view of the weather conditions at that specific location.",
+        "info3": "Additionally, when I explore the weather data table, each row of the table is powered by information extracted from APIs. Queries are sent based on the geographical coordinates of the selected location, and the corresponding weather data is retrieved and displayed in a clear and concise manner.",
+        "info4": "Thanks to the use of APIs, my weather application offers a smooth and enriching user experience, allowing them to stay informed about current and forecasted weather conditions in their region, no matter where they are.",
         //Jeux
         "pointage": "Score: ",
         "restart": "Restart",
@@ -297,6 +389,36 @@ var translations = {
         "modalHome": "Este sitio web es una demostración de mis habilidades en programación web. Está diseñado para mostrar mis experiencias en diversos campos de programación. Siéntase libre de explorar y ponerse en contacto conmigo si tiene alguna pregunta o comentario.",
         "souhait": "¡Disfruta tu visita!",
         "close": "Cerrar",
+        // Clima Mundial
+        "pageTitle": "Clima Mundial",
+        "search": "Buscar",
+        "searchButton": "Ver",
+        "selection": "Seleccione una ciudad",
+        "nominatimFooter": "Estos datos son proporcionados por",
+        "canadaFooter": "Estos datos meteorológicos son proporcionados por",
+        "weatherapiFooter": "Los datos meteorológicos son proporcionados por",
+        "toggleLegendButton": "Leyenda",
+        "opacity": "opacidad",
+        "heureLocale": "Hora Local",
+        "longitude": "Longitud",
+        "latitude": "Latitud",
+        "stationMeteo": "Estación Meteorológica",
+        "pays": "País",
+        "temperatureActuelle": "Temperatura Actual (°C)",
+        "temperatureRessentie": "Temperatura Sensación (°C)",
+        "conditions": "Condiciones",
+        "vitesseVent": "Velocidad del Viento (km/h)",
+        "directionVent": "Dirección del Viento",
+        "pression": "Presión en milibares (mb)",
+        "precipitation": "Precipitación (mm)",
+        "humidite": "Humedad (%)",
+        "couvertureNuageuse": "Cobertura de Nubes (%)",
+        "indiceUV": "Índice UV",
+        "rafalesVent": "Ráfagas de Viento (km/h)",
+        "info1": "En mi proyecto, he diseñado una aplicación meteorológica que aprovecha al máximo las API para proporcionar datos meteorológicos precisos y actualizados. Mediante el uso de la geolocalización, la aplicación puede determinar automáticamente la ubicación del usuario, lo que le permite acceder rápidamente a información meteorológica relevante para su región actual.",
+        "info2": "Cuando hago clic en un punto específico del mapa, la aplicación envía una solicitud a la API meteorológica correspondiente, solicitando datos como la temperatura actual, la velocidad del viento y la precipitación. Estos datos se recuperan y muestran, ofreciendo al usuario una vista detallada de las condiciones meteorológicas en ese lugar específico.",
+        "info3": "Además, cuando exploro la tabla de datos meteorológicos, cada fila de la tabla se alimenta de información extraída de las API. Se envían consultas en función de las coordenadas geográficas del lugar seleccionado, y se recuperan y muestran los datos meteorológicos correspondientes de manera clara y concisa.",
+        "info4": "Gracias al uso de las API, mi aplicación meteorológica ofrece una experiencia de usuario fluida y enriquecedora, lo que permite mantenerse informado sobre las condiciones meteorológicas actuales y pronosticadas en su región, esté donde esté.",
         // Jeux
         "pointage": "Puntuación: ",
         "restart": "Reiniciar",
@@ -386,7 +508,7 @@ var translations = {
 function setStoredLanguage() {
     // Récupérer la langue stockée dans le localStorage
     var storedLang = localStorage.getItem("selectedLanguage");
-
+    language= storedLang;
     // Vérifier si la langue stockée est valide
     if (storedLang && (storedLang === "Français" || storedLang === "English"|| storedLang === "Español")) {
         // Si la langue stockée est valide, utiliser cette langue
@@ -394,6 +516,7 @@ function setStoredLanguage() {
         langLink.innerText = storedLang;
         langLink.style.color = (storedLang === "Français") ? "black" : "black";
         let langSelect = document.getElementById("lang")
+        language= storedLang;
 
 
     langSelect.innerText = storedLang;
@@ -487,6 +610,137 @@ function setStoredLanguage() {
             if (close) {
                 close.innerText = translations[storedLang].close;
             }
+            // Météo Mondiale
+            var pageTitle = document.getElementById("pageTitle");
+            if (pageTitle) {
+                pageTitle.innerText = translations[storedLang].pageTitle;
+            }
+
+            var search = document.getElementById("search");
+            if (search) {
+                search.innerText = translations[storedLang].search;
+            }
+            var searchButton = document.getElementById("searchButton");
+            if (searchButton) {
+                searchButton.innerText = translations[storedLang].searchButton;
+            }
+            var selection = document.getElementById("selection");
+            if (selection) {
+                selection.innerText = translations[storedLang].selection;
+            }
+
+
+            var nominatimFooter = document.getElementById("nominatimFooter");
+            if (nominatimFooter) {
+                nominatimFooter.innerText = translations[storedLang].nominatimFooter;
+            }
+            let toggleLegendButton = document.getElementById("toggleLegendButton");
+            if (toggleLegendButton) {
+                toggleLegendButton.innerText = translations[storedLang].toggleLegendButton;
+            }
+
+            var opacity = document.getElementById("opacity");
+            if (opacity) {
+                opacity.innerText = translations[storedLang].opacity;
+            }
+
+            var canadaFooter = document.getElementById("canadaFooter");
+            if (canadaFooter) {
+                canadaFooter.innerText = translations[storedLang].canadaFooter;
+            }
+
+            var weatherapiFooter = document.getElementById("weatherapiFooter");
+            if (weatherapiFooter) {
+                weatherapiFooter.innerText = translations[storedLang].weatherapiFooter;
+            }
+            for (let i = 1; i <= 4; i++) {
+                const info = document.querySelector(`#info${i}`);
+                if (info) {
+                    info.innerText = translations[storedLang][`info${i}`];
+                }
+            }
+
+            //tableau
+            var heureLocale = document.getElementById("heureLocale");
+            if (heureLocale) {
+                heureLocale.innerText = translations[storedLang].heureLocale;
+            }
+
+            var longitude = document.getElementById("longitude");
+            if (longitude) {
+                longitude.innerText = translations[storedLang].longitude;
+            }
+
+            var latitude = document.getElementById("latitude");
+            if (latitude) {
+                latitude.innerText = translations[storedLang].latitude;
+            }
+
+            var stationMeteo = document.getElementById("stationMeteo");
+            if (stationMeteo) {
+                stationMeteo.innerText = translations[storedLang].stationMeteo;
+            }
+
+            var pays = document.getElementById("pays");
+            if (pays) {
+                pays.innerText = translations[storedLang].pays;
+            }
+
+            var temperatureActuelle = document.getElementById("temperatureActuelle");
+            if (temperatureActuelle) {
+                temperatureActuelle.innerText = translations[storedLang].temperatureActuelle;
+            }
+
+            var temperatureRessentie = document.getElementById("temperatureRessentie");
+            if (temperatureRessentie) {
+                temperatureRessentie.innerText = translations[storedLang].temperatureRessentie;
+            }
+
+            var conditions = document.getElementById("conditions");
+            if (conditions) {
+                conditions.innerText = translations[storedLang].conditions;
+            }
+
+            var vitesseVent = document.getElementById("vitesseVent");
+            if (vitesseVent) {
+                vitesseVent.innerText = translations[storedLang].vitesseVent;
+            }
+
+            var directionVent = document.getElementById("directionVent");
+            if (directionVent) {
+                directionVent.innerText = translations[storedLang].directionVent;
+            }
+
+            var pression = document.getElementById("pression");
+            if (pression) {
+                pression.innerText = translations[storedLang].pression;
+            }
+
+            var precipitation = document.getElementById("precipitation");
+            if (precipitation) {
+                precipitation.innerText = translations[storedLang].precipitation;
+            }
+
+            var humidite = document.getElementById("humidite");
+            if (humidite) {
+                humidite.innerText = translations[storedLang].humidite;
+            }
+
+            var couvertureNuageuse = document.getElementById("couvertureNuageuse");
+            if (couvertureNuageuse) {
+                couvertureNuageuse.innerText = translations[storedLang].couvertureNuageuse;
+            }
+
+            var indiceUV = document.getElementById("indiceUV");
+            if (indiceUV) {
+                indiceUV.innerText = translations[storedLang].indiceUV;
+            }
+
+            var rafalesVent = document.getElementById("rafalesVent");
+            if (rafalesVent) {
+                rafalesVent.innerText = translations[storedLang].rafalesVent;
+            }
+
 
             //Game
             let point = document.getElementById("pointage")

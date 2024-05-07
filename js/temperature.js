@@ -187,9 +187,21 @@ map.on("singleclick", function (evt) {
             })
             .then(function (json) {
 
+                let lang;
+                if (language === "Français") {
+                    lang = "fr";
+                } else if (language === "English") {
+                    lang = "en";
+                } else if (language === "Español") {
+                    lang = "es";
+                } else {
+                    // Par défaut, utilisez le français
+                    lang = "fr";
+                }
                 const apiKey = 'e73b2d7c3ba0491397c25706242804';
+                
                 // URL de l'API WeatherAPI.com pour récupérer les données météorologiques actuelles
-                const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${yx_coordinates}&lang=fr&aqi=no`;
+                const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${yx_coordinates}&lang=${lang}&aqi=no`;
 
                 // Envoi de la requête à l'API WeatherAPI.com
                 fetch(apiUrl)
@@ -200,9 +212,24 @@ map.on("singleclick", function (evt) {
 
 
 
-                        content.innerHTML = `Air surface temperature<br>
-                        (Lon/Lat): </> <code>${xy_coordinates}</code><br>
-                        Value: </b><code>${Math.round(json.features[0].properties.value)} °C</code>`;
+                        if (language === "Français") {
+                            content.innerHTML = `Température à la surface<br>
+                                                (Lon/Lat): </> <code>${xy_coordinates}</code><br>
+                                                Température: </b><code>${Math.round(json.features[0].properties.value)} °C</code>`;
+                        } else if (language === "English") {
+                            content.innerHTML = `Surface Temperature<br>
+                                                (Lon/Lat): </> <code>${xy_coordinates}</code><br>
+                                                Temperature: </b><code>${Math.round(json.features[0].properties.value)} °C</code>`;
+                        } else if (language === "Español") {
+                            content.innerHTML = `Temperatura en la superficie<br>
+                                                (Lon/Lat): </> <code>${xy_coordinates}</code><br>
+                                                Temperatura: </b><code>${Math.round(json.features[0].properties.value)} °C</code>`;
+                        } else {
+                            // Par défaut, utilisez le français
+                            content.innerHTML = `Température à la surface<br>
+                                                (Lon/Lat): </> <code>${xy_coordinates}</code><br>
+                                                Température: </b><code>${Math.round(json.features[0].properties.value)} °C</code>`;
+                        }
 
                         // Appel de la fonction pour valider les coordonnées
                         validateCoordinates(xy_values[0], xy_values[1], data);
@@ -824,7 +851,15 @@ async function searchCity() {
         const data = await response.json();
 
         const cityList = document.getElementById("cityList");
-        cityList.innerHTML = '<option value="">Sélectionnez une ville</option>';
+        const firstOption = cityList.firstElementChild; // Conserver la référence de la première option
+
+        // Vider la liste à partir de la deuxième option
+        while (cityList.childNodes.length > 1) {
+            cityList.removeChild(cityList.childNodes[1]);
+        }
+
+        // Réinsérer la première option après la vidange
+        cityList.appendChild(firstOption);
 
         if (data && data.length > 0) {
             data.forEach(cityData => {
@@ -843,9 +878,10 @@ async function searchCity() {
         document.getElementById("loadingIndicator").style.display = "none";
         console.error("Erreur lors de la recherche de la ville :", error);
         openModal("Une erreur s'est produite lors de la recherche de la ville.");
-
     }
 }
+
+
 
 
 async function selectCity() {
