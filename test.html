@@ -198,8 +198,34 @@
         <div id="result"></div>
         <div class="leaflet-bottom leaflet-right"><div class="leaflet-control-minimap leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom leaflet-control" tabindex="0" style="width: 150px; height: 150px; position: relative; outline-style: none;"><div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"><div class="leaflet-pane leaflet-tile-pane"><div class="leaflet-layer " style="z-index: 1; opacity: 1;"><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 13; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt="" src="https://tile.openstreetmap.org/0/0/0.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-56px, -41px, 0px); opacity: 1;"></div></div></div><div class="leaflet-pane leaflet-overlay-pane"><svg pointer-events="none" class="leaflet-zoom-animated" width="173" height="173" viewBox="-14 -14 173 173" style="transform: translate3d(-14px, -14px, 0px);"><g><path class="leaflet-interactive" stroke="#ff7800" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="#ff7800" fill-opacity="0.2" fill-rule="evenodd" d="M29 110L29 35L115 35L115 110z"></path><path class="leaflet-interactive" stroke="#000000" stroke-opacity="0" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="#000000" fill-opacity="0" fill-rule="evenodd" d="M160 150L-15 150L-15 -5L160 -5z"></path></g></svg></div><div class="leaflet-pane leaflet-shadow-pane"></div><div class="leaflet-pane leaflet-marker-pane"></div><div class="leaflet-pane leaflet-tooltip-pane"></div><div class="leaflet-pane leaflet-popup-pane"></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"></div><div class="leaflet-top leaflet-right"></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"></div></div><a class="leaflet-control-minimap-toggle-display leaflet-control-minimap-toggle-display-bottomright   " href="#" title="Hide MiniMap" style="width: 19px; height: 19px;"></a></div><div class="leaflet-control-attribution leaflet-control"><a href="https://leafletjs.com/">Leaflet</a> <span aria-hidden="true">|</span> <a href="https://osm.org/copyright">OpenStreetMap contributors</a></div></div>
         
-    
+        
     </div>
+    <div id="worldPopulation">
+            <!-- L'affichage de la population mondiale sera inséré ici -->
+        </div>
+    <script>
+        async function fetchWorldPopulation() {
+            const indicatorCode = 'SP.POP.TOTL';
+            const baseUrl = 'https://api.worldbank.org/v2/';
+            const url = `${baseUrl}country/all/indicator/${indicatorCode}?format=json`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                if (data && data[1] && data[1].length > 0) {
+                    const worldPopulation = data[1][0].value;
+                    document.getElementById("worldPopulation").innerHTML = `<p>Population mondiale : ${worldPopulation}</p>`;
+                } else {
+                    document.getElementById("worldPopulation").innerHTML = "<p>Impossible de récupérer les données de population mondiale.</p>";
+                }
+            } catch (error) {
+                console.error("Erreur lors de la récupération de la population mondiale :", error);
+                document.getElementById("worldPopulation").innerHTML = "<p>Une erreur s'est produite lors de la récupération des données de population mondiale.</p>";
+            }
+        }
+        // Call the function to fetch and display world population
+    fetchWorldPopulation();
+    </script>
 
     <script>
         function searchCity() {

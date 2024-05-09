@@ -32,7 +32,41 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
+                <div>
+                    <script>
+                        // Récupérez la balise span par son ID
+                        const currentLanguageSpan = document.getElementById('currentLanguage');
+                
+                        // Mettez à jour le contenu de la balise avec le contenu de la variable language
+                        currentLanguageSpan.textContent = language;
+                
+                        function langue() {
+                            // Mettez à jour le contenu de la balise avec le contenu de la variable language
+                            currentLanguageSpan.textContent = language;
+                        }
+                    </script>
+                    <nav class="navbar-nav ms-auto me-3 me-lg-4">
+                        <ul class="navbar-nav ms-auto me-3 me-lg-4">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle me-3" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-globe-americas fa-fw"></i><span id="currentLanguage"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <!-- Ajoutez les langues dynamiquement en utilisant JavaScript -->
+                                    <li><a id="francais" class="nav-link lang-link" onclick="changeLanguage('Français'); langue();" onmouseover="hoverLanguage('francais', true)" onmouseout="hoverLanguage('francais', false)">Français</a></li>
+                                    <li><a id="english" class="nav-link lang-link" onclick="changeLanguage('English'); langue();" onmouseover="hoverLanguage('english', true)" onmouseout="hoverLanguage('english', false)">English</a></li>
+                                    <li><a id="espagnol" class="nav-link lang-link" onclick="changeLanguage('Español'); langue();" onmouseover="hoverLanguage('espagnol', true)" onmouseout="hoverLanguage('espagnol', false)">Español</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                
+                
                 <div class="modal-header">
+                    <!-- Navbar-->
+            
                     <h5 class="modal-title" id="exampleModalLabel">
                         <i class="fas fa-handshake fa-3x"></i> <!-- Gros icône de bienvenue -->
                         <span id="titlemodalHome">Bienvenue sur mon site web démonstratif</span> 
