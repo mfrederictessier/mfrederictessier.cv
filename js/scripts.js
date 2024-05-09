@@ -44,28 +44,26 @@ window.onload = function () {
 };
 function changeLanguage(lang) {
     let langSelect = document.getElementById("lang");
-    language= lang;
-    
+    language = lang;
 
     // Déterminer la nouvelle langue en fonction de la langue actuelle
     var newLang;
-    if (lang === "Francais") {
-        newLang = "Francais";
+    if (lang === "Français") {
+        newLang = "Français";
     } else if (lang === "English") {
         newLang = "English";
     } else if (lang === "Español") {
         newLang = "Español";
     }
-    // Mettre à jour le texte du sélecteur de langue
+
+    // Mettre à jour le texte et le style du sélecteur de langue
     langSelect.innerText = newLang;
-    
-    // Mettre à jour le style du sélecteur de langue en fonction de la langue sélectionnée
     langSelect.style.color = "white";
 
     // Stocker la langue sélectionnée dans le stockage local
     localStorage.setItem("selectedLanguage", newLang);
-    setStoredLanguage();
-    updatePlaceholder();
+    setStoredLanguage(); // Mettre à jour la langue affichée sur la page
+    updatePlaceholder(); // Mettre à jour d'autres éléments de la page si nécessaire
 }
 var translations = {
     "Français": {
@@ -127,7 +125,7 @@ var translations = {
         "info2": "Lorsque je clique sur un point spécifique de la carte, l'application envoie une requête à l'API météorologique correspondante, demandant des données telles que la température actuelle, la vitesse du vent et les précipitations. Ces données sont ensuite récupérées et affichées, offrant à l'utilisateur une vue détaillée des conditions météorologiques à cet endroit précis.",
         "info3": "De plus, lorsque j'explore le tableau de données météorologiques, chaque ligne du tableau est alimentée par des informations extraites des API. Les requêtes sont envoyées en fonction des coordonnées géographiques de l'emplacement sélectionné, et les données météorologiques correspondantes sont récupérées et affichées de manière claire et concise.",
         "info4": "Grâce à l'utilisation des API, mon application météorologique offre une expérience utilisateur fluide et enrichissante, lui permettant de rester informé des conditions météorologiques actuelles et prévues dans sa région, où qu'il se trouve.",
-
+        "popupTitle": "Température à la surface",
 
 
         //jeux
@@ -275,6 +273,8 @@ var translations = {
         "info2": "When I click on a specific point on the map, the application sends a request to the corresponding weather API, requesting data such as current temperature, wind speed, and precipitation. This data is then retrieved and displayed, offering the user a detailed view of the weather conditions at that specific location.",
         "info3": "Additionally, when I explore the weather data table, each row of the table is powered by information extracted from APIs. Queries are sent based on the geographical coordinates of the selected location, and the corresponding weather data is retrieved and displayed in a clear and concise manner.",
         "info4": "Thanks to the use of APIs, my weather application offers a smooth and enriching user experience, allowing them to stay informed about current and forecasted weather conditions in their region, no matter where they are.",
+        "popupTitle": "Surface Temperature",
+        
         //Jeux
         "pointage": "Score: ",
         "restart": "Restart",
@@ -419,6 +419,7 @@ var translations = {
         "info2": "Cuando hago clic en un punto específico del mapa, la aplicación envía una solicitud a la API meteorológica correspondiente, solicitando datos como la temperatura actual, la velocidad del viento y la precipitación. Estos datos se recuperan y muestran, ofreciendo al usuario una vista detallada de las condiciones meteorológicas en ese lugar específico.",
         "info3": "Además, cuando exploro la tabla de datos meteorológicos, cada fila de la tabla se alimenta de información extraída de las API. Se envían consultas en función de las coordenadas geográficas del lugar seleccionado, y se recuperan y muestran los datos meteorológicos correspondientes de manera clara y concisa.",
         "info4": "Gracias al uso de las API, mi aplicación meteorológica ofrece una experiencia de usuario fluida y enriquecedora, lo que permite mantenerse informado sobre las condiciones meteorológicas actuales y pronosticadas en su región, esté donde esté.",
+        "popupTitle": "Temperatura en la superficie",
         // Jeux
         "pointage": "Puntuación: ",
         "restart": "Reiniciar",
@@ -659,6 +660,10 @@ function setStoredLanguage() {
                     info.innerText = translations[storedLang][`info${i}`];
                 }
             }
+            var popupTitle = document.getElementById("popupTitle");
+            if (popupTitle) {
+                popupTitle.innerText = translations[storedLang].popupTitle;
+            }
 
             //tableau
             var heureLocale = document.getElementById("heureLocale");
@@ -855,7 +860,21 @@ function setStoredLanguage() {
     } else {
         // Si aucune langue sélectionnée en mémoire ou si la langue stockée n'est pas valide,
         // utiliser la langue du navigateur par défaut
-        storedLang = navigator.language.startsWith("fr") ? "Français" : "English";
+        const langCode = navigator.language.substring(0, 2);
+
+switch (langCode) {
+    case "fr":
+        storedLang = "Français";
+        break;
+    case "en":
+        storedLang = "English";
+        break;
+    case "es":
+        storedLang = "Español";
+        break;
+    default:
+        storedLang = "English"; // Default to English if language not detected
+}
         localStorage.setItem("selectedLanguage", storedLang);
         // Appeler récursivement la fonction pour mettre à jour la langue
         setStoredLanguage();
