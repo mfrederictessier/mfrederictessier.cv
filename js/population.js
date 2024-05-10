@@ -213,22 +213,10 @@ function renderChart(data, labels, nomPays) {
         population: data[data.length - 1] // Prendre la dernière valeur de population dans les données
     });
 
-    // Appeler la fonction pour afficher le graphique à barres
-    renderBarChartFromCompiledData();
+    
 }
 
-function renderBarChartFromCompiledData() {
-    // Extraire les noms de pays et les valeurs de population du tableau compilé
-    countryNames = compiledData.map(item => item.country);
-    
-    // Récupérer l'avant-dernière valeur de population pour chaque pays
-    const populationValues = population;
-    
-    console.log('pop: ' + populationValues);
 
-    // Appeler la fonction pour afficher le graphique à barres avec les données compilées
-    renderBarChart(countryNames, populationValues);
-}
 
 // Fonction pour récupérer une couleur aléatoire
 function getRandomColor() {
@@ -242,45 +230,7 @@ function getRandomColor() {
 
 
 
-let data = []; // Définir un tableau vide à l'extérieur de la fonction renderBarChart
 
-function renderBarChart(countryNames, populationValues) {
-    var ctx = document.getElementById('barChart');
-    console.log('populationValues=' + populationValues);
 
-    // Ajouter la nouvelle valeur de population au tableau data
-    data.push({
-        label: 'Population',
-        data: populationValues, // Utiliser la nouvelle valeur directement
-        backgroundColor: 'rgba(54, 162, 235, 0.5)', // Couleur de fond des barres
-        borderColor: 'rgba(54, 162, 235, 1)', // Couleur de la bordure des barres
-        borderWidth: 1
-    });
 
-    // Créer un graphique à bandes avec les données mises à jour
-    var barChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: countryNames,
-            datasets: data // Utiliser le tableau data mis à jour
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true, // Commencer l'axe Y à zéro
-                    title: {
-                        display: true,
-                        text: 'Population' // Titre de l'axe Y
-                    }
-                },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Pays' // Titre de l'axe X
-                    }
-                }
-            }
-        }
-    });
-}
 
