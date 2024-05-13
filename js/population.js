@@ -13,6 +13,7 @@ $(document).ready(function () {
 
 
 });
+
 async function populateCountryList() {
     const url = "https://restcountries.com/v3.1/all"; // Endpoint pour obtenir la liste de tous les pays
 
@@ -168,6 +169,7 @@ let compiledData = [];
 
 // Déplacez cette ligne en dehors de la fonction renderChart pour qu'elle soit accessible globalement
 
+let lineChartColors = []; // Variable pour stocker les couleurs du graphique en ligne
 
 // Fonction pour afficher le graphique
 function renderChart(data, labels, nomPays) {
@@ -180,13 +182,18 @@ function renderChart(data, labels, nomPays) {
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Population, ' + nomPays,
+                    label: nomPays,
                     data: data,
                     borderColor: getRandomColor(), // Utilisation d'une fonction pour générer une couleur aléatoire
                     backgroundColor: 'rgba(0, 0, 0, 0.2)', // Couleur de fond transparente
                 }]
             },
             options: {
+                legend: {
+                    labels: {
+                        fontSize: 8 // Taille des étiquettes de la légende
+                    }
+                },
                 scales: {
                     yAxes: [{
                         ticks: {
@@ -196,16 +203,21 @@ function renderChart(data, labels, nomPays) {
                 }
             }
         });
+        // Stockez la couleur utilisée dans le graphique en ligne
+        lineChartColors.push(currentChart.data.datasets[0].borderColor);
     } else {
         // Ajouter les nouvelles données au graphique existant
         currentChart.data.labels = labels;
         currentChart.data.datasets.push({
-            label: 'Population, ' + nomPays,
+            label: nomPays,
             data: data,
             borderColor: getRandomColor(), // Utilisation d'une fonction pour générer une couleur aléatoire
             backgroundColor: 'rgba(0, 0, 0, 0.2)', // Couleur de fond transparente
         });
         currentChart.update(); // Mettez à jour le graphique pour refléter les changements
+
+        // Stockez la couleur utilisée dans le graphique en ligne
+        lineChartColors.push(currentChart.data.datasets[currentChart.data.datasets.length - 1].borderColor);
     }
     // Ajouter les données actuelles à compiledData
     compiledData.push({
@@ -213,10 +225,22 @@ function renderChart(data, labels, nomPays) {
         population: data[data.length - 1] // Prendre la dernière valeur de population dans les données
     });
 
-    
+    // Appeler la fonction pour afficher le graphique à barres
+    renderBarChartFromCompiledData();
 }
 
+function renderBarChartFromCompiledData() {
+    // Extraire les noms de pays et les valeurs de population du tableau compilé
+    var countryNames = compiledData.map(item => item.country);
+    
+    // Récupérer l'avant-dernière valeur de population pour chaque pays
+    const populationValues = population;
+    
+    console.log('pop: ' + populationValues);
 
+    // Appeler la fonction pour afficher le graphique à barres avec les données compilées
+    renderBarChart(countryNames, populationValues, lineChartColors);
+}
 
 // Fonction pour récupérer une couleur aléatoire
 function getRandomColor() {
@@ -230,7 +254,88 @@ function getRandomColor() {
 
 
 
+let data = {}; // Vous pouvez laisser cette ligne si vous en avez besoin pour autre chose
+let populationPays = [];
+let numero = 0;
 
+// Déclarer barChart en dehors de la fonction renderBarChart
+let barChart;
+
+// Modifier la fonction renderBarChart pour qu'elle utilise barChart correctement
+function renderBarChart(countryNames, populationValues, lineChartColors) {
+    var ctx = document.getElementById('barChart');
+    // Concaténer les nouvelles valeurs de population à populationPays
+    populationPays = populationPays.concat(populationValues);
+    populationPays = populationPays.slice();
+
+    // Convertir les valeurs de population en un tableau d'objets pour Chart.js
+    var chartData = {
+        labels: countryNames, // Étiquettes des pays
+        datasets: populationPays.map(function(population, index) {
+            return {
+                label: countryNames[index], // Nom du pays
+                data: [population], // Tableau de données pour ce pays
+                backgroundColor: lineChartColors[index], // Couleur de fond des barres
+                borderColor: 'rgba(0, 0, 0, 0)', // Couleur de la bordure des barres
+                borderWidth: 1
+            };
+        })
+    };
+
+    console.log(populationValues);
+    console.log(chartData);
+
+    // Créer un graphique à bandes avec les données mises à jour
+    if (!barChart) {
+        // Si le graphique n'existe pas encore, créez-le avec les nouvelles données
+        barChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                datasets: chartData.datasets
+            }, // Utiliser les données mises à jour
+            options: {
+                plugins: {
+                    tooltip: {
+                        enabled: false // Désactiver l'affichage des indicateurs de survol
+                    }
+                },
+                legend: {
+                    labels: {
+                        fontSize: 8 // Taille des étiquettes de la légende
+                    }
+                },
+                scales: {
+                    y: {
+                        type: 'linear', // Utiliser une échelle logarithmique pour l'axe Y
+                        title: {
+                            display: true,
+                            text: 'Population' // Titre de l'axe Y
+                        },
+                        ticks: {
+                            callback: function(value, index, values) {
+                                return Number(value.toString()); // Formater les étiquettes de l'axe y comme des nombres
+                            }
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Population par pays', // Titre de l'axe X
+                            fontSize: 10 // Taille des étiquettes des pays dans le haut du graphique
+                        },
+                        ticks: {
+                            display: false // Masquer les étiquettes de l'axe X
+                        }
+                    }
+                }
+            }
+        });
+    } else {
+        // Si le graphique existe déjà, mettez à jour les données et les labels
+        barChart.data.datasets = chartData.datasets;
+        barChart.update(); // Mettez à jour le graphique pour refléter les changements
+    }
+}
 
 
 
