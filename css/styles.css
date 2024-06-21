@@ -94,6 +94,20 @@
   position: relative;
 }
 
+
+@keyframes flashBorder {
+  0% { border: 2px solid rgb(129, 129, 129); }
+  50% { border: 2px solid transparent; }
+  100% { border: 2px solid rgb(129, 129, 129); }
+}
+
+
+
+#radioLink {
+  
+  animation: flashBorder 3s infinite;
+  border-radius: 5px; /* Pour arrondir les coins de la bordure */
+}
 #legend-popup-content {
   position: absolute;
   top: 60%;
